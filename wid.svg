@@ -1,0 +1,237 @@
+<svg
+  viewBox="0 0 200 120"
+  width="200"
+  height="120"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-label="Waldiez loading logo"
+>
+  <style>
+    /* =========================================================
+       THEME RULES
+       - Explicit theme wins: svg[waldiez-theme] OR any ancestor [waldiez-theme]
+       - Default (no explicit): auto-cycles (starts DARK), first switch waits
+         until the W finishes writing.
+       ========================================================= */
+
+    /* ---------- timing knobs ---------- */
+    svg {
+      --cycle: 18s;
+      --start-delay: 2.2s; /* ~2.0s write + tiny breath */
+
+      /* base (dark) */
+      --cw1: #6366f1;
+      --cw2: #8b5cf6;
+      --cw3: #ec4899;
+
+      --glow: rgba(99,102,241,0.55);
+      --orbit: rgba(255,255,255,0.8);
+      --moon: rgba(255,255,255,0.9);
+    }
+
+    /* ---------- explicit light ---------- */
+    svg[waldiez-theme="light"],
+    [waldiez-theme="light"] svg {
+      --cw1: #4338ca;
+      --cw2: #7c3aed;
+      --cw3: #db2777;
+
+      --glow: rgba(124,58,237,0.30);
+      --orbit: rgba(0,0,0,0.22);
+      --moon: rgba(0,0,0,0.35);
+    }
+
+    /* =========================================================
+       AUTO CYCLE (DEFAULT)
+       Safari-friendly: auto on by default; disabled when any theme exists
+       ========================================================= */
+
+    svg {
+      filter: drop-shadow(0 0 20px var(--glow));
+      animation:
+        logoPulse 2.2s ease-in-out 1.5s infinite,
+        themeCycle var(--cycle) ease-in-out infinite;
+      animation-delay:
+        0s,
+        var(--start-delay);
+      animation-fill-mode: both;
+    }
+
+    /* If explicit theme is set (on svg or any ancestor), DISABLE themeCycle */
+    svg[waldiez-theme],
+    [waldiez-theme] svg {
+      animation: logoPulse 2.2s ease-in-out 1.5s infinite;
+      animation-delay: 0s;
+      animation-fill-mode: both;
+    }
+
+    @keyframes themeCycle {
+      /* DARK */
+      0%, 20% {
+        --cw1: #6366f1;
+        --cw2: #8b5cf6;
+        --cw3: #ec4899;
+      }
+      /* LIGHT */
+      40%, 60% {
+        --cw1: #4338ca;
+        --cw2: #7c3aed;
+        --cw3: #db2777;
+      }
+      /* COSMIC ACCENT (subtle) */
+      80%, 100% {
+        --cw1: #5eead4;
+        --cw2: #38bdf8;
+        --cw3: #818cf8;
+      }
+    }
+
+    @keyframes logoPulse {
+      0%,100% { transform: scale(1); }
+      50%     { transform: scale(1.04); }
+    }
+
+    /* ================= WRITE-ON (W) ================= */
+    .w-stroke {
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: drawStroke 1.5s ease-out forwards;
+    }
+    .w-stroke-1 { animation-delay: 0s; }
+    .w-stroke-2 { animation-delay: 0.1s; }
+    .w-stroke-3 { animation-delay: 0.2s; }
+    .w-stroke-4 { animation-delay: 0.3s; }
+    .w-stroke-5 { animation-delay: 0.4s; }
+    .w-stroke-6 { animation-delay: 0.5s; }
+
+    @keyframes drawStroke {
+      0%   { stroke-dashoffset: 100; }
+      85%  { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    /* =========================================================
+       FINAL TOUCHES (3):
+       1) Fade ONLY background planets during transitions
+       2) Slight blur pulse during transitions (background only)
+       3) Sync first switch: same delay as themeCycle
+       ========================================================= */
+
+    .bg {
+      opacity: 1;
+      filter: blur(0px);
+      animation: bgFade var(--cycle) ease-in-out infinite;
+      animation-delay: var(--start-delay);
+      animation-fill-mode: both;
+    }
+
+    /* If explicit theme is set anywhere, keep bg steady (no fade/pulse) */
+    svg[waldiez-theme] .bg,
+    [waldiez-theme] svg .bg {
+      animation: none;
+      opacity: 1;
+      filter: blur(0px);
+    }
+
+    /* Softer transition (you asked):
+       - opacity dip 0.88 (was 0.82)
+       - blur pulse 0.5px (was 0.7px)
+    */
+    @keyframes bgFade {
+      0%, 20%   { opacity: 1;    filter: blur(0px); }
+      30%       { opacity: 0.88; filter: blur(0.5px); }
+      40%, 60%  { opacity: 1;    filter: blur(0px); }
+      70%       { opacity: 0.88; filter: blur(0.5px); }
+      80%, 100% { opacity: 1;    filter: blur(0px); }
+    }
+
+    /* ================= PLANETS ================= */
+    .orbit {
+      opacity: 0.18;
+      stroke: var(--orbit);
+      stroke-width: 0.6;
+      stroke-dasharray: 1.5 2.5;
+    }
+
+    .spin {
+      transform-origin: 100px 60px;
+      animation: spin 18s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .planet {
+      opacity: 0.28;
+      filter: url(#softGlow);
+    }
+
+    .moon {
+      fill: var(--moon);
+      opacity: 0.18;
+    }
+
+    /* ================= REDUCED MOTION ================= */
+    @media (prefers-reduced-motion: reduce) {
+      svg, .spin, .w-stroke, .bg { animation: none !important; }
+      .w-stroke { stroke-dashoffset: 0; }
+    }
+
+    /* Only if body contains exactly one element and it's the loader SVG */
+    body:has(> svg:only-child) {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    /* Responsive sizing when standalone */
+    body:has(> svg:only-child) > svg {
+      width: min(42vw, 240px);
+      height: auto;
+      display: block;
+    }
+
+    /* If you want it truly dead-center even on iOS address-bar changes */
+    @supports (height: 100svh) {
+      body:has(> svg:only-child) { min-height: 100svh; }
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="g1">
+      <stop offset="0%" stop-color="var(--cw1)" />
+      <stop offset="100%" stop-color="var(--cw2)" />
+    </linearGradient>
+    <linearGradient id="g2">
+      <stop offset="0%" stop-color="var(--cw2)" />
+      <stop offset="100%" stop-color="var(--cw3)" />
+    </linearGradient>
+    <linearGradient id="g3">
+      <stop offset="0%" stop-color="var(--cw3)" />
+      <stop offset="100%" stop-color="var(--cw1)" />
+    </linearGradient>
+
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="1.4" />
+    </filter>
+  </defs>
+
+  <!-- Background (planets only fade/blur on transitions) -->
+  <g class="bg">
+    <ellipse class="orbit" cx="100" cy="62" rx="66" ry="34" />
+    <g class="spin">
+      <circle class="planet" cx="152" cy="52" r="6.2" fill="url(#g1)" />
+      <circle class="planet" cx="62"  cy="88" r="4.6" fill="url(#g2)" />
+      <circle class="planet" cx="78"  cy="34" r="3.6" fill="url(#g3)" />
+      <circle class="moon" cx="160" cy="60" r="1.8" />
+    </g>
+  </g>
+
+  <!-- W (stays crisp during transitions) -->
+  <path class="w-stroke w-stroke-1" d="M 20 20 L 50 100" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" />
+  <path class="w-stroke w-stroke-2" d="M 50 100 L 80 40"  stroke="url(#g1)" stroke-width="8" stroke-linecap="round" />
+  <path class="w-stroke w-stroke-3" d="M 80 40 L 100 80"  stroke="url(#g2)" stroke-width="8" stroke-linecap="round" />
+  <path class="w-stroke w-stroke-4" d="M 100 80 L 120 40" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" />
+  <path class="w-stroke w-stroke-5" d="M 120 40 L 150 100" stroke="url(#g3)" stroke-width="8" stroke-linecap="round" />
+  <path class="w-stroke w-stroke-6" d="M 150 100 L 180 20" stroke="url(#g3)" stroke-width="8" stroke-linecap="round" />
+</svg>
