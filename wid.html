@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waldiez Loader Preview</title>
+
+  <link rel="icon" href="wid/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="wid/favicon-32.svg" type="image/svg+xml" sizes="32x32">
+  <link rel="apple-touch-icon" href="wid/apple-touch-icon.svg">
+  <link rel="mask-icon" href="wid/AppIcon.icns" color="#000000">
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      display: grid;
+      gap: 24px;
+      background: linear-gradient(135deg, #0a0a0f, #1a0f2e, #0f1a2e);
+      color: rgba(255,255,255,0.9);
+    }
+
+    .card {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .title {
+      margin: 0 0 12px;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* Generic loader sizing */
+    .loader {
+      width: 240px;
+      height: auto;
+      display: block;
+    }
+
+    .small {
+      width: 140px;
+    }
+
+    /* Centered stage (like a full-page loader, but contained) */
+    .stage {
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.01);
+      border: 1px dashed rgba(255,255,255,0.01);
+    }
+
+    /* Inline usage demo */
+    .inline {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 1) Standalone / centered -->
+  <div class="card">
+    <p class="title">1) Centered loader (stage)</p>
+    <div class="stage">
+      <img src="wid.svg" class="loader" alt="Waldiez loader" />
+    </div>
+  </div>
+
+  <!-- 2) Embedded in UI -->
+  <div class="card">
+    <p class="title">2) Embedded in UI (icon-like)</p>
+    <div class="inline">
+      <img src="wid.svg" class="loader small" alt="" />
+      <div>
+        <div style="opacity:.8">Loading experience…</div>
+        <div style="opacity:.5;font-size:.9rem">Initializing agents</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3) Forced dark theme -->
+  <div class="card" waldiez-theme="dark">
+    <p class="title">3) Forced dark theme (via parent)</p>
+    <div class="stage">
+      <img src="wid.svg" class="loader" alt="" />
+    </div>
+  </div>
+
+  <!-- 4) Forced light theme -->
+  <div class="card" waldiez-theme="light" style="background: rgba(255,255,255,0.35); color:#111;">
+    <p class="title">4) Forced light theme (via parent)</p>
+    <div class="stage" style="background: rgba(255,255,255,0.6);">
+      <img src="wid.svg" class="loader" alt="" />
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,22 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-  class="waldiez-loader"
-  viewBox="0 0 200 120"
-  width="240"
-  height="144"
-  fill="none"
-  preserveAspectRatio="xMidYMid meet"
-  xmlns="http://www.w3.org/2000/svg"
-  aria-label="Waldiez loading logo"
-  role="img"
->
-  <style>
+   class="waldiez-loader"
+   viewBox="0 0 200 120"
+   width="240"
+   height="144"
+   fill="none"
+   preserveAspectRatio="xMidYMid meet"
+   aria-label="Waldiez loading logo"
+   role="img"
+   version="1.1"
+   id="svg15"
+   sodipodi:docname="wid.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview15"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <style
+     id="style1">
     /* =========================================================
        Waldiez Loader (generic, embeddable SVG)
        - No global selectors (no body/html rules)
        - Theme aware:
-         * If svg[waldiez-theme] -> forced
-         * If any ancestor [waldiez-theme] -> forced
-         * Otherwise -> auto cycle (starts dark), delayed until W finishes
+         * If svg[waldiez-theme] -&gt; forced
+         * If any ancestor [waldiez-theme] -&gt; forced
+         * Otherwise -&gt; auto cycle (starts dark), delayed until W finishes
        - Background-only transition softness (fade + tiny blur)
        - Scales responsively via viewBox; size via width/height or CSS
        ========================================================= */
@@ -42,8 +58,8 @@
     }
 
     /* ---------- explicit light (on svg OR any ancestor) ---------- */
-    svg.waldiez-loader[waldiez-theme="light"],
-    [waldiez-theme="light"] svg.waldiez-loader {
+    svg.waldiez-loader[waldiez-theme=&quot;light&quot;],
+    [waldiez-theme=&quot;light&quot;] svg.waldiez-loader {
       --cw1: #4338ca;
       --cw2: #7c3aed;
       --cw3: #db2777;
@@ -54,8 +70,8 @@
     }
 
     /* ---------- explicit dark (on svg OR any ancestor) ---------- */
-    svg.waldiez-loader[waldiez-theme="dark"],
-    [waldiez-theme="dark"] svg.waldiez-loader {
+    svg.waldiez-loader[waldiez-theme=&quot;dark&quot;],
+    [waldiez-theme=&quot;dark&quot;] svg.waldiez-loader {
       /* uses defaults */
     }
 
@@ -191,45 +207,137 @@
       .w-stroke { stroke-dashoffset: 0; }
     }
   </style>
-
-  <defs>
-    <linearGradient id="g1">
-      <stop offset="0%" stop-color="var(--cw1)" />
-      <stop offset="100%" stop-color="var(--cw2)" />
+  <defs
+     id="defs6">
+    <linearGradient
+       id="g1">
+      <stop
+         offset="0%"
+         stop-color="var(--cw1)"
+         id="stop1" />
+      <stop
+         offset="100%"
+         stop-color="var(--cw2)"
+         id="stop2" />
     </linearGradient>
-    <linearGradient id="g2">
-      <stop offset="0%" stop-color="var(--cw2)" />
-      <stop offset="100%" stop-color="var(--cw3)" />
+    <linearGradient
+       id="g2">
+      <stop
+         offset="0%"
+         stop-color="var(--cw2)"
+         id="stop3" />
+      <stop
+         offset="100%"
+         stop-color="var(--cw3)"
+         id="stop4" />
     </linearGradient>
-    <linearGradient id="g3">
-      <stop offset="0%" stop-color="var(--cw3)" />
-      <stop offset="100%" stop-color="var(--cw1)" />
+    <linearGradient
+       id="g3">
+      <stop
+         offset="0%"
+         stop-color="var(--cw3)"
+         id="stop5" />
+      <stop
+         offset="100%"
+         stop-color="var(--cw1)"
+         id="stop6" />
     </linearGradient>
-
-    <filter id="softGlow">
-      <feGaussianBlur stdDeviation="1.4" />
+    <filter
+       id="softGlow">
+      <feGaussianBlur
+         stdDeviation="1.4"
+         id="feGaussianBlur6" />
     </filter>
   </defs>
-
   <!-- AUTO driver: applies themeCycle only when not overridden by [waldiez-theme] -->
-  <g class="auto">
+  <g
+     class="auto"
+     id="g15">
     <!-- Background (planets only fade/blur on transitions) -->
-    <g class="bg">
-      <ellipse class="orbit" cx="100" cy="62" rx="66" ry="34" />
-      <g class="spin">
-        <circle class="planet" cx="152" cy="52" r="6.2" fill="url(#g1)" />
-        <circle class="planet" cx="62"  cy="88" r="4.6" fill="url(#g2)" />
-        <circle class="planet" cx="78"  cy="34" r="3.6" fill="url(#g3)" />
-        <circle class="moon" cx="160" cy="60" r="1.8" />
+    <g
+       class="bg"
+       id="g10">
+      <ellipse
+         class="orbit"
+         cx="100"
+         cy="62"
+         rx="66"
+         ry="34"
+         id="ellipse6" />
+      <g
+         class="spin"
+         id="g9">
+        <circle
+           class="planet"
+           cx="152"
+           cy="52"
+           r="6.2"
+           fill="url(#g1)"
+           id="circle6" />
+        <circle
+           class="planet"
+           cx="62"
+           cy="88"
+           r="4.6"
+           fill="url(#g2)"
+           id="circle7" />
+        <circle
+           class="planet"
+           cx="78"
+           cy="34"
+           r="3.6"
+           fill="url(#g3)"
+           id="circle8" />
+        <circle
+           class="moon"
+           cx="160"
+           cy="60"
+           r="1.8"
+           id="circle9" />
       </g>
     </g>
-
     <!-- W (stays crisp during transitions) -->
-    <path class="w-stroke w-stroke-1" d="M 20 20 L 50 100" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" />
-    <path class="w-stroke w-stroke-2" d="M 50 100 L 80 40"  stroke="url(#g1)" stroke-width="8" stroke-linecap="round" />
-    <path class="w-stroke w-stroke-3" d="M 80 40 L 100 80"  stroke="url(#g2)" stroke-width="8" stroke-linecap="round" />
-    <path class="w-stroke w-stroke-4" d="M 100 80 L 120 40" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" />
-    <path class="w-stroke w-stroke-5" d="M 120 40 L 150 100" stroke="url(#g3)" stroke-width="8" stroke-linecap="round" />
-    <path class="w-stroke w-stroke-6" d="M 150 100 L 180 20" stroke="url(#g3)" stroke-width="8" stroke-linecap="round" />
+    <path
+       class="w-stroke w-stroke-1"
+       d="M 20 20 L 50 100"
+       stroke="url(#g1)"
+       stroke-width="8"
+       stroke-linecap="round"
+       id="path10" />
+    <path
+       class="w-stroke w-stroke-2"
+       d="M 50 100 L 80 40"
+       stroke="url(#g1)"
+       stroke-width="8"
+       stroke-linecap="round"
+       id="path11" />
+    <path
+       class="w-stroke w-stroke-3"
+       d="M 80 40 L 100 80"
+       stroke="url(#g2)"
+       stroke-width="8"
+       stroke-linecap="round"
+       id="path12" />
+    <path
+       class="w-stroke w-stroke-4"
+       d="M 100 80 L 120 40"
+       stroke="url(#g2)"
+       stroke-width="8"
+       stroke-linecap="round"
+       id="path13" />
+    <path
+       class="w-stroke w-stroke-5"
+       d="M 120 40 L 150 100"
+       stroke="url(#g3)"
+       stroke-width="8"
+       stroke-linecap="round"
+       id="path14" />
+    <path
+       class="w-stroke w-stroke-6"
+       d="M 150 100 L 180 20"
+       stroke="url(#g3)"
+       stroke-width="8"
+       stroke-linecap="round"
+       id="path15" />
   </g>
 </svg>
