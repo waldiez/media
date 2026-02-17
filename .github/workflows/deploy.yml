@@ -6,7 +6,8 @@ on:
       - main
 
 permissions:
-    write-all
+    id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
