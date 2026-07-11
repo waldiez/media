@@ -1,0 +1,77 @@
+<svg
+  class="swid-mark"
+  viewBox="0 0 120 120"
+  width="120"
+  height="120"
+  fill="none"
+  preserveAspectRatio="xMidYMid meet"
+  role="img"
+  aria-label="swid — self-certifying Spatial Web identifier"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <style>
+    /* Self-contained + embeddable: all rules are scoped under .swid-mark,
+       no global/body selectors, gold works on light and dark grounds. */
+    svg.swid-mark { display:block; overflow:visible; }
+    svg.swid-mark .seal {
+      stroke: url(#swidGold);
+      stroke-width: 5;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      fill: none;
+      stroke-dasharray: 420;
+      stroke-dashoffset: 420;
+      filter: drop-shadow(0 0 7px rgba(242,181,62,.45));
+      animation: swid-draw 1.3s cubic-bezier(.4,.9,.3,1) forwards;
+    }
+    svg.swid-mark .core {
+      fill: url(#swidGold);
+      transform-origin: 60px 60px;
+      transform-box: fill-box;
+      opacity: 0;
+      animation:
+        swid-crystallize .7s cubic-bezier(.2,.8,.2,1) 1.05s forwards,
+        swid-pulse 3.4s ease-in-out 1.9s infinite;
+    }
+    svg.swid-mark .spark { fill: url(#swidGold); opacity: 0; }
+    svg.swid-mark .s1 { animation: swid-blink 3.4s ease-in-out 1.7s infinite; }
+    svg.swid-mark .s2 { animation: swid-blink 3.4s ease-in-out 2.05s infinite; }
+    svg.swid-mark .s3 { animation: swid-blink 3.4s ease-in-out 2.4s infinite; }
+
+    @keyframes swid-draw { to { stroke-dashoffset: 0; } }
+    @keyframes swid-crystallize {
+      0%   { opacity:0; transform: scale(.55); }
+      70%  { opacity:1; transform: scale(1.08); }
+      100% { opacity:1; transform: scale(1); }
+    }
+    @keyframes swid-pulse {
+      0%,100% { opacity:1;   filter: drop-shadow(0 0 2px rgba(242,181,62,.35)); }
+      50%     { opacity:.82; filter: drop-shadow(0 0 10px rgba(242,181,62,.75)); }
+    }
+    @keyframes swid-blink { 0%,100% { opacity:0; } 45%,60% { opacity:.9; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      svg.swid-mark .seal { animation:none; stroke-dashoffset:0; }
+      svg.swid-mark .core { animation:none; opacity:1; }
+      svg.swid-mark .spark { animation:none; opacity:.9; }
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="swidGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"  stop-color="#ffd074"/>
+      <stop offset=".5" stop-color="#f2b53e"/>
+      <stop offset="1"  stop-color="#d99420"/>
+    </linearGradient>
+  </defs>
+
+  <!-- CEL/multihash sparks orbiting the seal -->
+  <circle class="spark s1" cx="60" cy="12" r="3.2"/>
+  <circle class="spark s2" cx="103" cy="88" r="3.2"/>
+  <circle class="spark s3" cx="17"  cy="88" r="3.2"/>
+
+  <!-- outer seal (the container) -->
+  <path class="seal" d="M60 18 96 39 V81 L60 102 24 81 V39 Z"/>
+  <!-- inner core (the self-certified id, derived from the seal) -->
+  <path class="core" d="M60 41 79 52 V74 L60 85 41 74 V52 Z"/>
+</svg>
